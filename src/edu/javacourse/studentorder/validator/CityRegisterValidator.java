@@ -10,8 +10,17 @@ public class CityRegisterValidator
     private String login;
     String password;
 
-    public AnswerCityRegister checkCityRegister(StudentOrder so) {
+    private CityRegisterChecker personChecker;
 
+
+    public CityRegisterValidator() {
+        personChecker = new FakeCityRegisterChecker();
+    }
+
+    public AnswerCityRegister checkCityRegister(StudentOrder so) {
+        personChecker.checkPerson(so.getHusband());
+        personChecker.checkPerson(so.getWife());
+        personChecker.checkPerson(so.getChild());
 
         AnswerCityRegister ans = new AnswerCityRegister();
         return ans;
